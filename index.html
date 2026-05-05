@@ -1,219 +1,837 @@
-<!DOCTYPE HTML>
-<!--
-  Prologue by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-  <head>
-    <title>Farid Babayev | Data & AI</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Farid Babayev - Marmara Üniversitesi BÖTE öğrencisi. Makine Öğrenmesi, Görüntü İşleme ve Öneri Sistemleri projeleri." />
-    <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
-  <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farid Babayev — AI Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Sidebar/Header -->
-    <div id="header">
-      <div class="top">
-        <!-- Logo -->
-        <div id="logo">
-          <span class="image avatar48"><img src="images/ferit.jpg" alt="Farid Babayev" /></span>
-          <h1 id="title">Farid Babayev</h1>
-          <p>Data &amp; AI Enthusiast</p>
+    :root {
+      --bg:       #0a0c0f;
+      --surface:  #111418;
+      --border:   #1e2530;
+      --muted:    #3a4455;
+      --subtle:   #5a6b80;
+      --text:     #c8d4e0;
+      --bright:   #e8f0f8;
+      --accent:   #4af0b0;
+      --accent2:  #1a8c6a;
+      --danger:   #ff6b6b;
+      --mono:     'DM Mono', monospace;
+      --sans:     'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── GRID NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,240,176,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,240,176,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(10,12,15,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--bright);
+      letter-spacing: -.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--subtle);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section { padding: 100px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 160px;
+      padding-bottom: 100px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 800;
+      color: var(--bright);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+
+    h1 .dim { color: var(--muted); }
+
+    .hero-title-line {
+      font-family: var(--sans);
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -.01em;
+      margin-bottom: 28px;
+    }
+
+    .hero-bio {
+      max-width: 580px;
+      color: var(--subtle);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-bio strong { color: var(--text); font-weight: 500; }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .05em;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0c0f;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #6fffc0;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    .project-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px 40px;
+      transition: border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent2);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--muted);
+      transform: translateX(4px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .project-name {
+      font-family: var(--sans);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--bright);
+      letter-spacing: -.02em;
+    }
+
+    .project-badge {
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .badge-finalist {
+      background: rgba(74,240,176,.1);
+      color: var(--accent);
+      border: 1px solid rgba(74,240,176,.2);
+    }
+
+    .badge-active {
+      background: rgba(255,107,107,.08);
+      color: #ff9f9f;
+      border: 1px solid rgba(255,107,107,.15);
+    }
+
+    .badge-completed {
+      background: rgba(90,107,128,.1);
+      color: var(--subtle);
+      border: 1px solid var(--border);
+    }
+
+    .project-role {
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .project-desc {
+      color: var(--subtle);
+      font-size: 13.5px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .project-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-bullets li {
+      font-size: 13px;
+      color: var(--text);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .project-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 12px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: .04em;
+      padding: 3px 10px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--subtle);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      padding: 28px 28px;
+    }
+
+    .skill-group-title {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-list li {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .skill-list li span {
+      color: var(--subtle);
+      font-size: 11px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-period {
+      font-size: 11px;
+      color: var(--subtle);
+      letter-spacing: .05em;
+      padding-top: 3px;
+    }
+
+    .exp-title {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--bright);
+      margin-bottom: 4px;
+    }
+
+    .exp-org {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: .05em;
+      margin-bottom: 12px;
+    }
+
+    .exp-desc {
+      font-size: 13px;
+      color: var(--subtle);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding-bottom: 120px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .contact-item:hover { background: #161c24; }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── PRINT ── */
+    @media print {
+      body::before, nav { display: none; }
+      main { max-width: 100%; padding: 0; }
+      section { padding: 40px 0; page-break-inside: avoid; }
+      .project-card { break-inside: avoid; }
+      #hero { min-height: auto; padding-top: 20px; }
+      .hero-links { display: none; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      main { padding: 0 20px; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">FB<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-tag">AI Software Engineer</div>
+    <h1>Farid<br><span class="dim">Babayev</span></h1>
+    <div class="hero-title-line">Computer Vision · Real-Time Systems · Autonomous Platforms</div>
+    <p class="hero-bio">
+      Building end-to-end AI systems for defense and healthcare — from sensor fusion and 
+      <strong>real-time target tracking</strong> to <strong>clinical decision support</strong>. 
+      Focused on deploying deep learning at the edge, minimizing latency, and delivering 
+      measurable outcomes in competitive environments.
+    </p>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/bferid854" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/faridbabayev854" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="mailto:bferid722@gmail.com" class="btn btn-outline">Email</a>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="section-label">Engineering Projects</div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">MGM Fünye</div>
+          <span class="project-badge badge-finalist">🏆 Best Design Award · Teknofest Finalist</span>
         </div>
-
-        <!-- Nav -->
-        <nav id="nav">
-          <ul>
-            <li><a href="#top"       id="top-link"       class="scrolly"><span class="icon solid fa-home">Profil</span></a></li>
-            <li><a href="#portfolio" id="portfolio-link" class="scrolly"><span class="icon solid fa-th">Projeler</span></a></li>
-            <li><a href="#about"     id="about-link"     class="scrolly"><span class="icon solid fa-user">Hakkımda</span></a></li>
-            <li><a href="#contact"   id="contact-link"   class="scrolly"><span class="icon solid fa-envelope">İletişim</span></a></li>
-            <li><a href="assets/Ferit_Babayev_CV.pdf" target="_blank"><span class="icon solid fa-file">CV (PDF)</span></a></li>
-          </ul>
-        </nav>
+        <div class="project-role">Computer Vision Engineer · AI-Based Air Defense System · Apr 2025 – Present</div>
+        <p class="project-desc">
+          Real-time target detection and tracking pipeline for a national defense competition.
+          Engineered full hardware-software integration under strict latency constraints.
+        </p>
+        <ul class="project-bullets">
+          <li>YOLO-based detection pipeline achieving robust performance in dynamic battlefield scenarios</li>
+          <li>Kalman filter tracking to maintain target stability under high-speed maneuvers</li>
+          <li>Dual-camera architecture eliminating motion blur at high angular velocities</li>
+          <li>Embedded system integration with optimized detection-to-actuation latency</li>
+          <li>Coordinated hardware-software synchronization for real-time inference at the edge</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">YOLOv5/v8</span>
+          <span class="tag">Kalman Filter</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Embedded Systems</span>
+          <span class="tag">Real-Time Inference</span>
+          <span class="tag">PID Control</span>
+        </div>
       </div>
 
-      <div class="bottom">
-        <!-- Social Icons -->
-        <ul class="icons">
-          <li><a href="mailto:bferid722@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-          <li><a href="https://www.linkedin.com/in/faridbabayev854" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-          <li><a href="https://github.com/bferid854" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="https://kaggle.com/bferid854" target="_blank" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a></li>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">MGM Navaris</div>
+          <span class="project-badge badge-active">Active</span>
+        </div>
+        <div class="project-role">Autonomous Systems Engineer · Unmanned Surface Vehicle · 2024 – Present</div>
+        <p class="project-desc">
+          Full-stack autonomous navigation system for an unmanned surface vehicle operating 
+          in open-water environments without GPS infrastructure.
+        </p>
+        <ul class="project-bullets">
+          <li>Integrated GPS, camera, and LiDAR for real-time environmental awareness and state estimation</li>
+          <li>Computer vision-based obstacle detection and mission-specific engagement logic</li>
+          <li>Dual-GPS fusion for centimeter-level positioning accuracy in open water</li>
+          <li>Custom power distribution and control board design for onboard system management</li>
+          <li>75% domestic production with 3D-printed structural components, weight-optimized</li>
+          <li>Autonomous path planning for mission execution in unstructured environments</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">Sensor Fusion</span>
+          <span class="tag">LiDAR</span>
+          <span class="tag">GPS Navigation</span>
+          <span class="tag">Path Planning</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Hardware Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">OncoNova</div>
+          <span class="project-badge badge-completed">Completed · May 2025</span>
+        </div>
+        <div class="project-role">AI/ML Team Lead · Clinical Decision Support System · Sep 2024 – May 2025</div>
+        <p class="project-desc">
+          CNN-based clinical decision support system for personalized cancer diagnosis, 
+          targeting immunotherapy response prediction via biomarker analysis.
+        </p>
+        <ul class="project-bullets">
+          <li>Led team developing CNN models on histopathology images for biomarker detection</li>
+          <li>End-to-end pipeline for PD-L1 and CTLA-4 detection targeting immunotherapy response</li>
+          <li>Personalized treatment recommendation module combining multimodal patient data</li>
+          <li>Applied SHAP/LIME explainability for clinical-grade model interpretability</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">CNN</span>
+          <span class="tag">Histopathology</span>
+          <span class="tag">Transfer Learning</span>
+          <span class="tag">SHAP/LIME</span>
+          <span class="tag">Biomarker Detection</span>
+          <span class="tag">PyTorch</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li>Python <span>— primary</span></li>
+          <li>C <span>— embedded</span></li>
+          <li>SQL</li>
+          <li>Bash</li>
+          <li>JavaScript</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Computer Vision</div>
+        <ul class="skill-list">
+          <li>YOLOv5 / YOLOv8</li>
+          <li>OpenCV</li>
+          <li>Object Detection & Tracking</li>
+          <li>Kalman Filter</li>
+          <li>Dual-Camera Systems</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / Deep Learning</div>
+        <ul class="skill-list">
+          <li>PyTorch / TensorFlow</li>
+          <li>CNNs, Transfer Learning</li>
+          <li>Scikit-learn</li>
+          <li>LangChain</li>
+          <li>Hugging Face</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Systems & Tools</div>
+        <ul class="skill-list">
+          <li>Real-Time Processing</li>
+          <li>Sensor Fusion</li>
+          <li>Embedded Integration</li>
+          <li>Docker / Linux</li>
+          <li>AWS · Git</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML Foundations</div>
+        <ul class="skill-list">
+          <li>Feature Engineering</li>
+          <li>Regression / Classification</li>
+          <li>Recommendation Systems</li>
+          <li>NLP Basics</li>
+          <li>Anomaly Detection</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data & Visualization</div>
+        <ul class="skill-list">
+          <li>NumPy / Pandas</li>
+          <li>Power BI</li>
+          <li>Matplotlib</li>
+          <li>SQL Analytics</li>
+          <li>Scientific Python</li>
         </ul>
       </div>
     </div>
+  </section>
 
-    <!-- Main -->
-    <div id="main">
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <div class="section-label">Experience & Education</div>
+    <div class="exp-list">
 
-      <!-- Intro -->
-      <section id="top" class="one dark cover">
-        <div class="container">
-          <header>
-             <br><br>
-            <h2 class="alt">Merhaba, ben <strong>Farid Babayev</strong></h2>
-            <br><br>
-            <p>
-              Marmara Üniversitesi BÖTE 3. sınıf öğrencisiyim. Yapay zekâ, veri analitiği ve yazılım geliştirme
-              odaklı projeler/yarışmalarla deneyim kazandım. ML, Görüntü İşleme ve Öneri Sistemlerinde
-              çalışıyorum; staj/proje fırsatlarına açığım.
-            </p>
-          </header>
-          <footer>
-            <a href="assets/Ferit_Babayev_CV.pdf" target="_blank" class="button scrolly">CV’yi İndir (PDF)</a>
-            <a href="#portfolio" class="button scrolly">Projeleri Gör</a>
-          </footer>
+      <div class="exp-item">
+        <div class="exp-period">Jan 2026 – Present</div>
+        <div>
+          <div class="exp-title">AI Instructor & Mentor Scholar</div>
+          <div class="exp-org">T3 Foundation · Google–Turkey Partnership</div>
+          <p class="exp-desc">Mentored students in AI, computer vision, and software development. Contributed to curriculum design and delivery for national AI education programs.</p>
         </div>
-      </section>
-
-      <!-- Portfolio (UPDATED) -->
-<section id="portfolio" class="two">
-  <div class="container">
-    <header><h2>Projeler</h2></header>
-    <p>AI, veri analitiği ve uygulamalı projelerimden seçmeler:</p>
-
-    <div class="row">
-      <!-- Left column -->
-      <div class="col-4 col-12-mobile">
-        <!-- with_rfm_customer_segmentetion -->
-        <article class="item">
-          <a href="https://github.com/bferid854/with_rfm_customer_segmentetion" target="_blank" class="image fit">
-            <img src="images/pic01.png" alt="RFM Customer Segmentation" />
-          </a>
-          <header><h3>RFM Customer Segmentation</h3></header>
-          <p>Müşteri segmentasyonu, skorlama ve içgörü üretimi. (RFM / CRM analitiği)</p>
-        </article>
-
-        <!-- with_BG-NBD_CLTV_Predict -->
-        <article class="item">
-          <a href="https://github.com/bferid854/with_BG-NBD_CLTV_Predict" target="_blank" class="image fit">
-            <img src="images/pic02.png" alt="BG-NBD CLTV Prediction" />
-          </a>
-          <header><h3>BG-NBD ile CLTV Tahmini</h3></header>
-          <p>Satın alma sıklığı, beklenen sipariş sayısı ve yaşam boyu değer modellemesi.</p>
-        </article>
       </div>
 
-      <!-- Middle column -->
-      <div class="col-4 col-12-mobile">
-        <!-- Intro-to-Astro2025 -->
-        <article class="item">
-          <a href="https://github.com/bferid854/Intro-to-Astro2025" target="_blank" class="image fit">
-            <img src="images/pic03.gif" alt="Intro to Astro 2025" />
-          </a>
-          <header><h3>Intro-to-Astro2025</h3></header>
-          <p>Intro2Astro ders çalışmaları: hesaplamalar, raporlar ve ödevler.</p>
-        </article>
-
-        <!-- EduCoach -->
-        <article class="item">
-          <a href="https://github.com/bferid854" target="_blank" class="image fit">
-            <img src="images/pic04.png" alt="EduCoach" />
-          </a>
-        <header><h3>EduCoach (YZTA)</h3></header>
-          <p>Öğrenci koçluğu: Flutter + Firebase + Python ile kişiselleştirilmiş öneri sistemi.</p>
-        </article>
+      <div class="exp-item">
+        <div class="exp-period">Nov 2024 – Aug 2025</div>
+        <div>
+          <div class="exp-title">Data Science Trainee</div>
+          <div class="exp-org">AI & Technology Academy · Google-Supported Program</div>
+          <p class="exp-desc">Selected from 25,000+ applicants. Trained in ML, big data analytics, feature engineering, predictive modeling, and project management.</p>
+        </div>
       </div>
 
-      <!-- Right column -->
-      <div class="col-4 col-12-mobile">
-        <!-- TEKNOFEST CV -->
-        <article class="item">
-          <a href="https://github.com/bferid854" target="_blank" class="image fit">
-            <img src="images/pic05.png" alt="TEKNOFEST Computer Vision" />
-          </a>
-          <header><h3>TEKNOFEST – Computer Vision</h3></header>
-          <p>Nesne tanıma / obje tespiti, İHA/drone odaklı teknik ekip çalışmaları.</p>
-        </article>
+      <div class="exp-item">
+        <div class="exp-period">Jul 2025 – Aug 2025</div>
+        <div>
+          <div class="exp-title">Astronomy Research Participant</div>
+          <div class="exp-org">Intro2Astro 2025 · University of Hawaii at Manoa</div>
+          <p class="exp-desc">Exoplanet research using NASA Kepler & TESS datasets. Applied Python-based data analysis, scientific visualization, and research methodology.</p>
+        </div>
+      </div>
 
-        <!-- Onco Nova -->
-        <article class="item">
-          <a href="https://github.com/bferid854" target="_blank" class="image fit">
-            <img src="images/pic06.jpeg" alt="Onco Nova" />
-          </a>
-          <header><h3>Onco Nova</h3></header>
-          <p>Sağlık/AI odaklı girişim çalışması. LinkedIn üzerinden güncellemeler.</p>
-          <p>
-            <a href="https://www.linkedin.com/company/onco-nova" target="_blank" class="button small icon brands fa-linkedin">
-              Onco Nova LinkedIn
-            </a>
-          </p>
-        </article>
+      <div class="exp-item">
+        <div class="exp-period">Apr 2025 – May 2025</div>
+        <div>
+          <div class="exp-title">UAV Category Judge & Field Organizer</div>
+          <div class="exp-org">TÜBİTAK / MEB – 17th International Robotics Competition</div>
+          <p class="exp-desc">Evaluated UAV teams on technical merit. Managed field preparation and hardware inspections at a national-level robotics event.</p>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-period">2022 – Expected 2027</div>
+        <div>
+          <div class="exp-title">B.Sc. Computer & Instructional Technologies Education</div>
+          <div class="exp-org">Marmara University · Istanbul — GPA 3.02 / 4.00</div>
+          <p class="exp-desc">Core Team Member, HSD Marmara University (Huawei Student Developers). Bootcamps completed: Miuul Data Scientist Path (1yr), ML Bootcamp, AWS Cloud Engineering.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-grid">
+      <a href="mailto:bferid722@gmail.com" class="contact-item">
+        <div class="contact-icon">@</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">bferid722@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+905541101443" class="contact-item">
+        <div class="contact-icon">✆</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+90 554 110 1443</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/faridbabayev854" target="_blank" class="contact-item">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">faridbabayev854</div>
+        </div>
+      </a>
+      <a href="https://github.com/bferid854" target="_blank" class="contact-item">
+        <div class="contact-icon">&lt;/&gt;</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">bferid854</div>
+        </div>
+      </a>
+      <a href="https://kaggle.com/bferid854" target="_blank" class="contact-item">
+        <div class="contact-icon">K</div>
+        <div>
+          <div class="contact-label">Kaggle</div>
+          <div class="contact-value">bferid854</div>
+        </div>
+      </a>
+      <div class="contact-item" style="cursor:default">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Istanbul, Turkey</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+</main>
 
-      <!-- About -->
-      <section id="about" class="three">
-        <div class="container">
-          <header><h2>Profil Özeti</h2></header>
-          
-          <p>
-            Ben Farid Babayev, Marmara Üniversitesi Bilgisayar ve Öğretim Teknolojileri Öğretmenliği 3. sınıf öğrencisiyim.
-            Teknolojiyi uygulayan, paylaşan ve toplumsal faydaya dönüştürmeye çalışan bir öğrenciyim.
-            Kariyer yolculuğum yapay zekâ, veri analitiği ve yazılım geliştirme odaklı projeler, yarışmalar ve akademik programlarla şekillendi.
-            YZTA, AI4Change ve 42 İstanbul deneyimleriyle ML, Görüntü İşleme ve Öneri Sistemleri alanlarında projeler geliştirdim.
-          </p>
-        </div>
-      </section>
+<footer>
+  <p>Farid Babayev · <span>AI Software Engineer</span></p>
+  <p>bferid854.github.io</p>
+</footer>
 
-      <!-- Contact -->
-      <section id="contact" class="four">
-        <div class="container">
-          <header><h2>İletişim</h2></header>
-          <p>İstanbul, Türkiye — staj/proje fırsatlarına açığım.</p>
-          <ul class="icons" style="margin-top:1rem">
-            <li><a href="mailto:bferid722@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            <li><a href="https://www.linkedin.com/in/faridbabayev854" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-            <li><a href="https://github.com/bferid854" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="https://kaggle.com/bferid854" target="_blank" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a></li>
-            <li><span class="icon solid fa-phone"></span> +90 554 110 14 43</li>
-          </ul>
-        </div>
-      </section>
-
-    </div>
-
-    <!-- Footer -->
-    <div id="footer">
-      <ul class="copyright">
-        <li>&copy; <span id="y"></span> Ferit Babayev</li>
-        <li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
-      </ul>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-
-    <script>
-      document.querySelectorAll('#nav a.scrolly').forEach(function(a){
-        a.addEventListener('click', function(e){
-          var href = this.getAttribute('href');
-          if (href && href.startsWith('#')) {
-            e.preventDefault();
-            var el = document.querySelector(href);
-            if (el) {
-              el.scrollIntoView({behavior:'smooth', block:'start'});
-              if(history.pushState) history.pushState(null, '', href);
-              else location.hash = href;
-            }
-          }
-        });
-      });
-      // Footer yıl
-      document.getElementById('y').textContent = new Date().getFullYear();
-    </script>
-  </body>
+</body>
 </html>
